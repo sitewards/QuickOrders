@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * layout.xml
+ *  - add the option to the checkout page in the shipping methods additional block,
+ *  - Add the delivery date to all the order and print pages in the customer section
+ *
+ * @category    Sitewards
+ * @package     Sitewards_MultipleOrder
+ * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
+ */
+-->
+<layout version="0.1.0">
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" ifconfig="multipleorder/generalsettings/active" translate="label"
+                    module="sitewards_multipleorder">
+                <name>order_form</name>
+                <path>multipleorder/order/form</path>
+                <label>New Order Form</label>
+            </action>
+        </reference>
+    </customer_account>
+    <sitewards_multipleorder_order_form translate="label" module="sitewards_multipleorder">
+        <label>New Order Form</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="core/template" name="order_form"
+                   template="sitewards/multipleorder/order/form.phtml"/>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>sitewards/multipleorder.js</script>
+            </action>
+            <action method="addCss">
+                <name>css/sitewards/multipleorder.css</name>
+            </action>
+        </reference>
+    </sitewards_multipleorder_order_form>
+</layout>

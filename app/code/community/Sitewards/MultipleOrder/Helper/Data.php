@@ -14,7 +14,7 @@ class Sitewards_MultipleOrder_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Path for the config for extension active status
      */
-    const CONFIG_EXTENSION_ACTIVE = 'deliverydate/generalsettings/active';
+    const CONFIG_EXTENSION_ACTIVE = 'multipleorder/generalsettings/active';
 
     /**
      * Variable for if the extension is active

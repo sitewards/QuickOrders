@@ -2,3 +2,8 @@
 /app/etc/modules/Sitewards_MultipleOrder.xml /app/etc/modules/Sitewards_MultipleOrder.xml
 /app/locale/de_DE/Sitewards_MultipleOrder.csv /app/locale/de_DE/Sitewards_MultipleOrder.csv
 /app/locale/en_US/Sitewards_MultipleOrder.csv /app/locale/en_US/Sitewards_MultipleOrder.csv
+/app/design/frontend/base/default/layout/sitewards/multipleorder.xml /app/design/frontend/base/default/layout/sitewards/multipleorder.xml
+/app/design/frontend/base/default/template/sitewards/multipleorder /app/design/frontend/base/default/template/sitewards/multipleorder
+/js/sitewards/multipleorder.js /js/sitewards/multipleorder.js
+/skin/frontend/base/default/css/sitewards/multipleorder.css /skin/frontend/base/default/css/sitewards/multipleorder.css
+/skin/frontend/base/default/images/sitewards/multipleorder /skin/frontend/base/default/images/sitewards/multipleorder
