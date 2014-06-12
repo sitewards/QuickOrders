@@ -55,7 +55,8 @@ class Sitewards_MultipleOrder_ProductController extends Mage_Core_Controller_Fro
     protected function isProductActive($oProduct)
     {
         $aCurrentWebsiteId = Mage::app()->getStore()->getWebsiteId();
-        return $oProduct->getId()
+        return $oProduct
+            && $oProduct->getId()
             && is_array($oProduct->getWebsiteIds())
             && in_array($aCurrentWebsiteId, $oProduct->getWebsiteIds());
     }
