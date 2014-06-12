@@ -1,0 +1,21 @@
+.sitewards-quickorders-order-form TABLE TR TD,
+.sitewards-quickorders-order-form THEAD TR TH {
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.sitewards-quickorders-order-form THEAD TR TH {
+    font-weight: bold;
+}
+
+.sitewards-quickorders-order-form .price {
+    text-align: right;
+}
+
+.sitewards-quickorders-order-form .invisible {
+    display: none;
+}
+
+.sitewards-quickorders-order-form A {
+    cursor: pointer;
+}

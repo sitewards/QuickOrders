@@ -6,35 +6,35 @@
  *  - Add the delivery date to all the order and print pages in the customer section
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
  */
 -->
 <layout version="0.1.0">
     <customer_account>
         <reference name="customer_account_navigation">
-            <action method="addLink" ifconfig="multipleorder/generalsettings/active" translate="label"
-                    module="sitewards_multipleorder">
+            <action method="addLink" ifconfig="quickorders/generalsettings/active" translate="label"
+                    module="sitewards_quickorders">
                 <name>order_form</name>
-                <path>multipleorder/order/form</path>
-                <label>New Order Form</label>
+                <path>quickorders/order/form</path>
+                <label>Quick Order Form</label>
             </action>
         </reference>
     </customer_account>
-    <sitewards_multipleorder_order_form translate="label" module="sitewards_multipleorder">
-        <label>New Order Form</label>
+    <sitewards_quickorders_order_form translate="label" module="sitewards_quickorders">
+        <label>Qucik Order Form</label>
         <update handle="customer_account"/>
         <reference name="my.account.wrapper">
             <block type="core/template" name="order_form"
-                   template="sitewards/multipleorder/order/form.phtml"/>
+                   template="sitewards/quickorders/order/form.phtml"/>
         </reference>
         <reference name="head">
             <action method="addJs">
-                <script>sitewards/multipleorder.js</script>
+                <script>sitewards/quickorders.js</script>
             </action>
             <action method="addCss">
-                <name>css/sitewards/multipleorder.css</name>
+                <name>css/sitewards/quickorders.css</name>
             </action>
         </reference>
-    </sitewards_multipleorder_order_form>
+    </sitewards_quickorders_order_form>
 </layout>

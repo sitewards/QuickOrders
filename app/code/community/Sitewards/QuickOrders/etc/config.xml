@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * config.xml
+ *   - set-up module
+ *
+ * @category    Sitewards
+ * @package     Sitewards_QuickOrders
+ * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
+ */
+-->
+<config>
+    <modules>
+        <Sitewards_QuickOrders>
+            <version>0.1.0</version>
+        </Sitewards_QuickOrders>
+    </modules>
+    <global>
+        <blocks>
+            <sitewards_quickorders>
+                <class>Sitewards_QuickOrders_Block</class>
+            </sitewards_quickorders>
+        </blocks>
+        <helpers>
+            <sitewards_quickorders>
+                <class>Sitewards_QuickOrders_Helper</class>
+            </sitewards_quickorders>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <Sitewards_QuickOrders>
+                <use>standard</use>
+                <args>
+                    <module>Sitewards_QuickOrders</module>
+                    <frontName>quickorders</frontName>
+                </args>
+            </Sitewards_QuickOrders>
+        </routers>
+        <translate>
+            <modules>
+                <Sitewards_QuickOrders>
+                    <files>
+                        <default>Sitewards_QuickOrders.csv</default>
+                    </files>
+                </Sitewards_QuickOrders>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <sitewards_quickorders>
+                    <file>sitewards/quickorders.xml</file>
+                </sitewards_quickorders>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+        <quickorders>
+            <generalsettings>
+                <active>0</active>
+            </generalsettings>
+        </quickorders>
+    </default>
+    <phpunit>
+        <suite>
+            <modules>
+                <Sitewards_QuickOrders/>
+            </modules>
+        </suite>
+    </phpunit>
+</config>

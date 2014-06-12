@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Sitewards_MultipleOrder_OrederController
+ * Sitewards_QuickOrders_OrederController
  *  - implements actions for new order form and cancel an order
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
  */
-class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front_Action
+class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_Action
 {
     /**
      * Check customer authentication and extension flag
@@ -16,7 +16,7 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
     public function preDispatch()
     {
         parent::preDispatch();
-        Mage::helper('sitewards_multipleorder')->isDispatchAllowed($this);
+        Mage::helper('sitewards_quickorders')->isDispatchAllowed($this);
     }
 
     /**
@@ -50,7 +50,7 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
                 $this->__('Please enter valid product sku.')
             );
 
-            $this->_redirect('multipleorder/order/form');
+            $this->_redirect('quickorders/order/form');
         }
     }
 

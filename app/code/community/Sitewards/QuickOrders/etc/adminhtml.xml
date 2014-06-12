@@ -5,7 +5,7 @@
  *  - create acl for this module
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
  */
 -->
@@ -18,10 +18,10 @@
                         <children>
                             <config>
                                 <children>
-                                    <multipleorder translate="title" module="sitewards_multipleorder">
-                                        <title>Multiple Order</title>
+                                    <quickorders translate="title" module="sitewards_quickorders">
+                                        <title>Quick Orders</title>
                                         <sort_order>50</sort_order>
-                                    </multipleorder>
+                                    </quickorders>
                                 </children>
                             </config>
                         </children>

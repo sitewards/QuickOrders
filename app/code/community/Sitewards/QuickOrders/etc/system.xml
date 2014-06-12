@@ -6,14 +6,14 @@
  *  - assign admin config fields to sections
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
  */
 -->
 <config>
     <sections>
-        <multipleorder translate="label" module="sitewards_multipleorder">
-            <label>Multiple Product Order Form</label>
+        <quickorders translate="label" module="sitewards_quickorders">
+            <label>Quick Orders</label>
             <tab>customer</tab>
             <frontend_type>text</frontend_type>
             <sort_order>990</sort_order>
@@ -30,7 +30,7 @@
                     <show_in_store>1</show_in_store>
                     <fields>
                         <active translate="label,comment">
-                            <label>Enable Multiple Product Order Form</label>
+                            <label>Enable Quick Orders Form</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
@@ -42,6 +42,6 @@
                     </fields>
                 </generalsettings>
             </groups>
-        </multipleorder>
+        </quickorders>
     </sections>
 </config>

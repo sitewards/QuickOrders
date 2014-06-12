@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Sitewards_MultipleOrder_ProductController
+ * Sitewards_QuickOrders_ProductController
  *  - implements infoAction to validate a product request by sku
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2013 Sitewards GmbH (http://www.sitewards.com/)
  */
-class Sitewards_MultipleOrder_ProductController extends Mage_Core_Controller_Front_Action
+class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front_Action
 {
     /**
      * Check customer authentication and extension flag
@@ -16,7 +16,7 @@ class Sitewards_MultipleOrder_ProductController extends Mage_Core_Controller_Fro
     public function preDispatch()
     {
         parent::preDispatch();
-        Mage::helper('sitewards_multipleorder')->isDispatchAllowed($this);
+        Mage::helper('sitewards_quickorders')->isDispatchAllowed($this);
     }
 
     /**

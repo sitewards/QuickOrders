@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Sitewards_MultipleOrder_Helper_Data
+ * Sitewards_QuickOrders_Helper_Data
  *  - Helper containing the checks for
  *      - extension is active
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
  */
-class Sitewards_MultipleOrder_Helper_Data extends Mage_Core_Helper_Abstract
+class Sitewards_QuickOrders_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
      * Path for the config for extension active status
      */
-    const CONFIG_EXTENSION_ACTIVE = 'multipleorder/generalsettings/active';
+    const CONFIG_EXTENSION_ACTIVE = 'quickorders/generalsettings/active';
 
     /**
      * Variable for if the extension is active
@@ -47,7 +47,7 @@ class Sitewards_MultipleOrder_Helper_Data extends Mage_Core_Helper_Abstract
 
         if (
             !Mage::getSingleton('customer/session')->authenticate($oController, $sLoginUrl)
-            || !Mage::helper('sitewards_multipleorder')->isExtensionActive()
+            || !Mage::helper('sitewards_quickorders')->isExtensionActive()
         ) {
             $oController->setFlag('', $oController::FLAG_NO_DISPATCH, true);
         }

@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Sitewards_MultipleOrder.xml
+ * Sitewards_QuickOrders.xml
  *  - Activate module,
  *  - Specify code pool,
  *  - Set-up dependencies
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
  */
 -->
 <config>
     <modules>
-        <Sitewards_MultipleOrder>
+        <Sitewards_QuickOrders>
             <active>true</active>
             <codePool>community</codePool>
             <depends />
-        </Sitewards_MultipleOrder>
+        </Sitewards_QuickOrders>
     </modules>
 </config>

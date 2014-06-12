@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Test for class Sitewards_MultipleOrder_Helper_Data
+ * Test for class Sitewards_QuickOrders_Helper_Data
  *
  * @category    Sitewards
- * @package     Sitewards_MultipleOrder
+ * @package     Sitewards_QuickOrders
  * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
  */
-class Sitewards_MultipleOrder_Test_Helper_Data extends EcomDev_PHPUnit_Test_Case
+class Sitewards_QuickOrders_Test_Helper_Data extends EcomDev_PHPUnit_Test_Case
 {
     /**
      * Tests is extension active
@@ -18,7 +18,7 @@ class Sitewards_MultipleOrder_Test_Helper_Data extends EcomDev_PHPUnit_Test_Case
     public function testIsExtensionActive()
     {
         $this->assertTrue(
-            Mage::helper('sitewards_multipleorder')->isExtensionActive(),
+            Mage::helper('sitewards_quickorders')->isExtensionActive(),
             'Extension is not active please check config'
         );
     }

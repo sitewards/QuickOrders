@@ -38,7 +38,7 @@ var OrderProduct = Class.create(
                 this._onChangeSku.bind(this)
             );
             this.getElement('.qty').style.display = 'none';
-            this._sLoadingImage = $$('.sitewards-multipleorder-order-form .loading').first().src;
+            this._sLoadingImage = $$('.sitewards-quickorders-order-form .loading').first().src;
 
             var that = this;
             this.getElement('.remove')
@@ -57,7 +57,7 @@ var OrderProduct = Class.create(
          * @private
          */
         _onChangeSku: function () {
-            new Ajax.Request('/multipleorder/product/info', {
+            new Ajax.Request('/quickorders/product/info', {
                 method: 'get',
                 parameters: {
                     'sku' : this.getElement('input.sku').value
