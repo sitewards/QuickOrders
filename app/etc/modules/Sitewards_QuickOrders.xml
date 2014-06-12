@@ -16,7 +16,10 @@
         <Sitewards_QuickOrders>
             <active>true</active>
             <codePool>community</codePool>
-            <depends />
+            <depends>
+                <Mage_Catalog/>
+                <Mage_Checkout/>
+            </depends>
         </Sitewards_QuickOrders>
     </modules>
 </config>
