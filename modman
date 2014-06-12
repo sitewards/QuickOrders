@@ -2,8 +2,8 @@
 /app/etc/modules/Sitewards_QuickOrders.xml /app/etc/modules/Sitewards_QuickOrders.xml
 /app/locale/de_DE/Sitewards_QuickOrders.csv /app/locale/de_DE/Sitewards_QuickOrders.csv
 /app/locale/en_US/Sitewards_QuickOrders.csv /app/locale/en_US/Sitewards_QuickOrders.csv
-/app/design/frontend/base/default/layout/sitewards/QuickOrders.xml /app/design/frontend/base/default/layout/sitewards/QuickOrders.xml
-/app/design/frontend/base/default/template/sitewards/QuickOrders /app/design/frontend/base/default/template/sitewards/QuickOrders
-/js/sitewards/QuickOrders.js /js/sitewards/QuickOrders.js
-/skin/frontend/base/default/css/sitewards/QuickOrders.css /skin/frontend/base/default/css/sitewards/QuickOrders.css
-/skin/frontend/base/default/images/sitewards/QuickOrders /skin/frontend/base/default/images/sitewards/QuickOrders
+/app/design/frontend/base/default/layout/sitewards/quickorders.xml /app/design/frontend/base/default/layout/sitewards/quickorders.xml
+/app/design/frontend/base/default/template/sitewards/quickorders /app/design/frontend/base/default/template/sitewards/quickorders
+/js/sitewards/quickorders.js /js/sitewards/quickorders.js
+/skin/frontend/base/default/css/sitewards/quickorders.css /skin/frontend/base/default/css/sitewards/quickorders.css
+/skin/frontend/base/default/images/sitewards/quickorders /skin/frontend/base/default/images/sitewards/quickorders

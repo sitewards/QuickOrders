@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Sitewards_QuickOrders_OrederController
- *  - implements actions for new order form and cancel an order
+ * Sitewards_QuickOrders_OrderController
+ *  - implements actions for quick order form
  *
  * @category    Sitewards
  * @package     Sitewards_QuickOrders
