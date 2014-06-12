@@ -28,13 +28,8 @@ class Sitewards_MultipleOrder_ProductController extends Mage_Core_Controller_Fro
         $sSku = $this->getRequest()->getParam('sku');
 
         /* @var Mage_Catalog_Model_Product $oProduct */
-        $oProduct          = Mage::getModel('catalog/product')->loadByAttribute('sku', $sSku);
-        $aCurrentWebsiteId = Mage::app()->getStore()->getWebsiteId();
-        if ($oProduct
-            && $oProduct->getId()
-            && is_array($oProduct->getWebsiteIds())
-            && in_array($aCurrentWebsiteId, $oProduct->getWebsiteIds())
-        ) {
+        $oProduct = Mage::getModel('catalog/product')->loadByAttribute('sku', $sSku);
+        if ($this->isProductActive($oProduct)) {
             $sResponse = json_encode(
                 array(
                     'result' => 0,
@@ -49,5 +44,19 @@ class Sitewards_MultipleOrder_ProductController extends Mage_Core_Controller_Fro
         } else {
             $this->getResponse()->setHttpResponseCode(404);
         }
+    }
+
+    /**
+     * Check to see if the product is active on the current website
+     *
+     * @param Mage_Catalog_Model_Product $oProduct
+     * @return bool
+     */
+    protected function isProductActive($oProduct)
+    {
+        $aCurrentWebsiteId = Mage::app()->getStore()->getWebsiteId();
+        return $oProduct->getId()
+            && is_array($oProduct->getWebsiteIds())
+            && in_array($aCurrentWebsiteId, $oProduct->getWebsiteIds());
     }
 }
