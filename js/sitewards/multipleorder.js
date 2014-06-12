@@ -101,14 +101,14 @@ var OrderProduct = Class.create(
         _onSuccess: function(transport) {
             this._clearMessages();
             var oResponse = transport.responseText.evalJSON(true);
-            if (oResponse.result == 0) {
+            if (oResponse.result === 0) {
                 var oQty = this.getElement('input.qty');
 
                 oQty.value = Math.max(1, oResponse.qty);
                 oQty.disabled = false;
                 this.getElement('.name').update(oResponse.name);
                 this.getElement('.price').update(oResponse.price);
-                if (this._hasEmptyLineInForm() == false) {
+                if (this._hasEmptyLineInForm() === false) {
                     this._duplicateLine();
                 }
                 this.getElement('.qty').style.display = 'block';
@@ -158,7 +158,7 @@ var OrderProduct = Class.create(
             var aLines = this._oLine.up('tbody').select('tr');
             for (var i=0; i < aLines.length; i++) {
                 var oInput = $(aLines[i]).select('input').first();
-                if (oInput.value == '') {
+                if (oInput.value === '') {
                     return true;
                 }
             }

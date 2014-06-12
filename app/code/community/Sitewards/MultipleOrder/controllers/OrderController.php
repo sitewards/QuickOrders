@@ -36,7 +36,7 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
     public function submitAction()
     {
         try {
-            $oCart = $this->tryAddProduct();
+            $oCart = $this->tryAddProducts();
 
             if (!$this->getCheckoutSession()->getNoCartRedirect(true)) {
                 if (!$oCart->getQuote()->getHasError()) {
@@ -89,26 +89,36 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
      *
      * @return Mage_Checkout_Model_Cart
      */
-    protected function tryAddProduct()
+    protected function tryAddProducts()
     {
         $oRequest = $this->getRequest();
         $aSkus    = array_filter($oRequest->getParam('sku'));
         $aQtys    = $oRequest->getParam('qty');
 
-        $oCart = $this->getCart();
         foreach ($aSkus as $iKey => $sSku) {
-            $iQty = isset($aQtys[$iKey]) ? $aQtys[$iKey] : 1;
-
-            /** @var Mage_Catalog_Model_Product $oProduct */
-            $oProduct   = Mage::getModel('catalog/product');
-            $iProductId = $oProduct->getIdBySku($sSku);
-            if (isset($iProductId)) {
-                $oCart->addProduct($iProductId, $iQty);
-            }
+            $iQuantity = isset($aQtys[$iKey]) ? $aQtys[$iKey] : 1;
+            $this->addSingleProduct($sSku, $iQuantity);
         }
+        $oCart = $this->getCart();
         $oCart->save();
 
         $this->getCheckoutSession()->setCartWasUpdated(true);
         return $oCart;
+    }
+
+    /**
+     * Try to add a given product to the cart via sku
+     *
+     * @param string $sSku
+     * @param int $iQuantity
+     */
+    protected function addSingleProduct($sSku, $iQuantity)
+    {
+        /** @var Mage_Catalog_Model_Product $oProduct */
+        $oProduct = Mage::getModel('catalog/product');
+        $iProductId = $oProduct->getIdBySku($sSku);
+        if (isset($iProductId)) {
+            $this->getCart()->addProduct($iProductId, $iQuantity);
+        }
     }
 }
