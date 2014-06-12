@@ -16,14 +16,7 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
     public function preDispatch()
     {
         parent::preDispatch();
-        $sLoginUrl = Mage::helper('customer')->getLoginUrl();
-
-        if (
-            !Mage::getSingleton('customer/session')->authenticate($this, $sLoginUrl)
-            || !Mage::helper('sitewards_multipleorder')->isExtensionActive()
-        ) {
-            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
-        }
+        Mage::helper('sitewards_multipleorder')->isDispatchAllowed($this);
     }
 
     /**
@@ -43,24 +36,7 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
     public function submitAction()
     {
         try {
-            $oRequest = $this->getRequest();
-            $aSkus = array_filter($oRequest->getParam('sku'));
-            $aQtys = $oRequest->getParam('qty');
-
-            $oCart = $this->getCart();
-            foreach ($aSkus as $iKey => $sSku) {
-                $iQty = isset($aQtys[$iKey]) ? $aQtys[$iKey] : 1;
-
-                /** @var Mage_Catalog_Model_Product $oProduct */
-                $oProduct = Mage::getModel('catalog/product');
-                $iProductId = $oProduct->getIdBySku($sSku);
-                if (isset($iProductId)) {
-                    $oCart->addProduct($iProductId, $iQty);
-                }
-            }
-            $oCart->save();
-
-            $this->getCheckoutSession()->setCartWasUpdated(true);
+            $oCart = $this->tryAddProduct();
 
             if (!$this->getCheckoutSession()->getNoCartRedirect(true)) {
                 if (!$oCart->getQuote()->getHasError()) {
@@ -106,5 +82,33 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
     protected function getCart()
     {
         return Mage::getSingleton('checkout/cart');
+    }
+
+    /**
+     * Try to add products to the cart from the request
+     *
+     * @return Mage_Checkout_Model_Cart
+     */
+    protected function tryAddProduct()
+    {
+        $oRequest = $this->getRequest();
+        $aSkus    = array_filter($oRequest->getParam('sku'));
+        $aQtys    = $oRequest->getParam('qty');
+
+        $oCart = $this->getCart();
+        foreach ($aSkus as $iKey => $sSku) {
+            $iQty = isset($aQtys[$iKey]) ? $aQtys[$iKey] : 1;
+
+            /** @var Mage_Catalog_Model_Product $oProduct */
+            $oProduct   = Mage::getModel('catalog/product');
+            $iProductId = $oProduct->getIdBySku($sSku);
+            if (isset($iProductId)) {
+                $oCart->addProduct($iProductId, $iQty);
+            }
+        }
+        $oCart->save();
+
+        $this->getCheckoutSession()->setCartWasUpdated(true);
+        return $oCart;
     }
 }

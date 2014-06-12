@@ -16,14 +16,7 @@ class Sitewards_MultipleOrder_ProductController extends Mage_Core_Controller_Fro
     public function preDispatch()
     {
         parent::preDispatch();
-        $sLoginUrl = Mage::helper('customer')->getLoginUrl();
-
-        if (
-            !Mage::getSingleton('customer/session')->authenticate($this, $sLoginUrl)
-            || !Mage::helper('sitewards_multipleorder')->isExtensionActive()
-        ) {
-            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
-        }
+        Mage::helper('sitewards_multipleorder')->isDispatchAllowed($this);
     }
 
     /**
@@ -33,8 +26,9 @@ class Sitewards_MultipleOrder_ProductController extends Mage_Core_Controller_Fro
     public function infoAction()
     {
         $sSku = $this->getRequest()->getParam('sku');
+
         /* @var Mage_Catalog_Model_Product $oProduct */
-        $oProduct = Mage::getModel('catalog/product')->loadByAttribute('sku', $sSku);
+        $oProduct          = Mage::getModel('catalog/product')->loadByAttribute('sku', $sSku);
         $aCurrentWebsiteId = Mage::app()->getStore()->getWebsiteId();
         if ($oProduct
             && $oProduct->getId()
