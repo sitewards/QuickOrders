@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sitewards_MultipleOrder.xml
+ *  - Activate module,
+ *  - Specify code pool,
+ *  - Set-up dependencies
+ *
+ * @category    Sitewards
+ * @package     Sitewards_MultipleOrder
+ * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
+ */
+-->
+<config>
+    <modules>
+        <Sitewards_MultipleOrder>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends />
+        </Sitewards_MultipleOrder>
+    </modules>
+</config>

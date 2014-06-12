@@ -1,0 +1,22 @@
+{
+    "name": "sitewards/multiple_order",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "The Sitewards Multiple Order extends your webshop to add order form to the customer account page",
+    "homepage": "http://www.sitewards.com",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
+    "extra": {
+        "magento-root-dir": "../magento/"
+    }
+}

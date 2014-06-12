@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * config.xml
+ *   - set-up module
+ *
+ * @category    Sitewards
+ * @package     Sitewards_MultipleOrder
+ * @copyright   Copyright (c) 2014 Sitewards GmbH (http://www.sitewards.com/)
+ */
+-->
+<config>
+    <modules>
+        <Sitewards_MultipleOrder>
+            <version>0.1.0</version>
+        </Sitewards_MultipleOrder>
+    </modules>
+    <global>
+        <helpers>
+            <sitewards_multipleorder>
+                <class>Sitewards_MultipleOrder_Helper</class>
+            </sitewards_multipleorder>
+        </helpers>
+    </global>
+    <default>
+        <multipleorder>
+            <generalsettings>
+                <active>0</active>
+            </generalsettings>
+        </multipleorder>
+    </default>
+    <phpunit>
+        <suite>
+            <modules>
+                <Sitewards_MultipleOrder/>
+            </modules>
+        </suite>
+    </phpunit>
+</config>
