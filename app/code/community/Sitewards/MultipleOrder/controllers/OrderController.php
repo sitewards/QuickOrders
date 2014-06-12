@@ -115,7 +115,7 @@ class Sitewards_MultipleOrder_OrderController extends Mage_Core_Controller_Front
     protected function addSingleProduct($sSku, $iQuantity)
     {
         /** @var Mage_Catalog_Model_Product $oProduct */
-        $oProduct = Mage::getModel('catalog/product');
+        $oProduct   = Mage::getModel('catalog/product');
         $iProductId = $oProduct->getIdBySku($sSku);
         if (isset($iProductId)) {
             $this->getCart()->addProduct($iProductId, $iQuantity);
