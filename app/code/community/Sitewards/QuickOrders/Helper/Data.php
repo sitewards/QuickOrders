@@ -21,7 +21,7 @@ class Sitewards_QuickOrders_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @var bool
      */
-    protected $isExtensionActive;
+    protected $bExtensionActive;
 
     /**
      * Check to see if the extension is active
@@ -30,10 +30,10 @@ class Sitewards_QuickOrders_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isExtensionActive()
     {
-        if ($this->isExtensionActive === null) {
-            $this->isExtensionActive = Mage::getStoreConfigFlag(self::CONFIG_EXTENSION_ACTIVE);
+        if ($this->bExtensionActive === null) {
+            $this->bExtensionActive = Mage::getStoreConfigFlag(self::CONFIG_EXTENSION_ACTIVE);
         }
-        return $this->isExtensionActive;
+        return $this->bExtensionActive;
     }
 
     /**
