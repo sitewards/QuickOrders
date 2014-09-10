@@ -9,6 +9,7 @@ The Sitewards QuickOrders extension adds a new form to the customer section that
 To Do
 ----------------
 * Enable product image -> already on localhost testing environment<br />
+* Do not add line with a product that's out of stock -> already on localhost testing environment<br /> 
 * Do not remove all lines if one product can't be added to cart<br />
 
 Already updated
