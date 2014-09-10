@@ -1,3 +1,13 @@
+Personal To do List
+=============
+Enable product image -> already on localhost testing environment
+Do not remove all lines if one product can't be added to cart
+
+Already updated
+=============
+Show specific error why product wasn't added to cart
+Submit GET full path of Magento (now works on multilanguage installations)
+
 QuickOrders
 =============
 
