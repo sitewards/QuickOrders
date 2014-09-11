@@ -239,8 +239,8 @@ var OrderProduct = Class.create(
         _onFailure: function () {
             this._reset();
             this._removeEmptyRows();
-			this._showMessage(Translator.translate('The product does not exist.'));
-		    this.getElement('.name').focus();
+            this._showMessage(Translator.translate('The product does not exist.'));
+	    this.getElement('.name').focus();
         }
     }
 );
