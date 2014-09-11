@@ -1,4 +1,4 @@
-CHANGES
+CHANGES v0.3
 -----
 * Product image displayed on list
 * Extensions checks if product is in stock – if it's not then it's show same error as it wasn't found. 
