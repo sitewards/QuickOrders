@@ -1,9 +1,8 @@
 document.observe(
     'dom:loaded',
     /**
-     * initializes first product
-     */
-        function() {
+     * initializes first product*/
+    function () {
         var oProduct = new OrderProduct($$('form#order_form .product')[0]);
     }
 );
