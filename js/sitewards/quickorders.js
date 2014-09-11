@@ -108,7 +108,7 @@ var OrderProduct = Class.create(
                 oQty.disabled = false;
                 this.getElement('.name').update(oResponse.name);
                 //this.getElement('.availability').update(oResponse.availability); don't show availability to customers as we don't want that, uncomment to show customer available pcs of specific product
-				this.getElement('.img').update('<img src="' + oResponse.image + '" class="product-img">'); 
+				this.getElement('.img').update('<img src="' + oResponse.image + '" class="product-img" width="40" height="40">'); 
                 if(oResponse.price==oResponse.finalprice) {			//Check if normal price is equal to final product price	
 				this.getElement('.price').update(oResponse.price); //display only normal product price
 				this.getElement('.price').className='price'; //if its same, then do not stylize
@@ -150,6 +150,7 @@ var OrderProduct = Class.create(
 				this.getElement("td.qty").innerHTML = html; //replace innerhtml of td qty with html value
 				oQty.value=e.options[e.selectedIndex].value; //get selected value from dropdown list
 			  }
+		
         },
 
         /**
