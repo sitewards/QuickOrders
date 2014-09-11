@@ -57,6 +57,7 @@ var OrderProduct = Class.create(
          * @private
          */
         _onChangeSku: function () {
+
             new Ajax.Request('../../../quickorders/product/info', {
                 method: 'get',
                 parameters: {
@@ -103,14 +104,16 @@ var OrderProduct = Class.create(
             var oResponse = transport.responseText.evalJSON(true);
             if (oResponse.result === 0) {
                 var oQty = this.getElement('input.qty');
-
                 oQty.value = Math.max(1, oResponse.qty);
                 oQty.disabled = false;
                 this.getElement('.name').update(oResponse.name);
+                //this.getElement('.availability').update(oResponse.availability); don't show availability to customers as we don't want that, uncomment to show customer available pcs of specific product
+				this.getElement('.img').update('<img src="' + oResponse.image + '" class="product-img">'); 
                 this.getElement('.price').update(oResponse.price);
                 if (this._hasEmptyLineInForm() === false) {
                     this._duplicateLine();
                 }
+
                 this.getElement('.qty').style.display = 'block';
                 oQty.focus();
                 oQty.select();
@@ -124,6 +127,19 @@ var OrderProduct = Class.create(
                 this._showMessage(oResponse.error);
                 this.getElement('input.sku').focus();
             }
+			  if (this.getElement('input.qty').value > 1) { //if product has minimal allowed quantity bigger than 1
+				var html, i, number;
+				number = parseInt(this.getElement('input.qty').value, 10); 
+				html='<select type="text" name="qty[]" class="qty" selected="selected">';
+				for (i = 0; number < oResponse.availability; ++i)   //do it while number is lower than available pcs
+				{
+					html+='<option value="'+ number + '">'+ number +'</option>'; 
+					number=number+oResponse.qty; //number=minimum quantity incrementing
+				}
+				html+='</select>';
+				this.getElement("td.qty").innerHTML = html; //replace innerhtml of td qty with html value
+				oQty.value=e.options[e.selectedIndex].value; //get selected value from dropdown list
+			  }
         },
 
         /**
@@ -175,6 +191,8 @@ var OrderProduct = Class.create(
             this.getElement('input.qty').disabled = 'disabled';
             this.getElement('.name').update('');
             this.getElement('.price').update('');
+            this.getElement('.img').update('');
+            this.getElement('.availability').update('');
         },
 
         /**
@@ -211,8 +229,8 @@ var OrderProduct = Class.create(
         _onFailure: function () {
             this._reset();
             this._removeEmptyRows();
-            this._showMessage(Translator.translate('The product does not exist.'));
-            this.getElement('.name').focus();
+			this._showMessage(Translator.translate('The product does not exist.'));
+		    this.getElement('.name').focus();
         }
     }
 );
