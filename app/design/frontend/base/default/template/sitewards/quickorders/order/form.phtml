@@ -19,8 +19,9 @@
 				<th class="accept"></th>
 				<th class="image"><?php echo $oHelper->__('Image'); ?></th>
                 <th class="name"><?php echo $oHelper->__('Name'); ?></th>
-                <th class="availability"><?php echo $oHelper->__('Availability'); ?></th>
+                <th class="availabilitya" style="display:none;"><?php echo $oHelper->__('Availability'); ?></th>
                 <th class="price"><?php echo $oHelper->__('Price'); ?></th>
+                <th class="finalprice"></th>
                 <th class="qty"><?php echo $oHelper->__('Quantity'); ?></th>
                 <th class="remove"style="text-align: right;"><?php echo $oHelper->__('Action'); ?></th>
             </tr>
@@ -36,17 +37,23 @@
 				</td>
 				 <td class="img"></td>
                 <td class="name"></td>
-                <td class="availability"></td>
+                <td class="availability" style="display:none;"></td>
                 <td class="price"></td>
+				<td class="finalprice"></td>
+
                 <td class="qty" id="test">
 				<input type="text" name="qty[]" class="qty input-text" disabled="disabled" id="txtQuantity"/>
 				</td>
-                <td><a class="remove"><?php echo $oHelper->__('Remove this entry'); ?></a></td>
+                <td class="remove" style="text-align: center;">
+				
+				<a class="remove" style="font-size:24px" ><i class="fi-minus-circle"></i></a></td>
             </tr>
             </tbody>
         </table>
-	        <input type="submit" value="<?php echo $oHelper->__('Submit Data') ?>"
-               title="<?php echo $oHelper->__('Submit Data') ?>"/>
+		<button type="submit" value="<?php echo $oHelper->__('Submit Data') ?>">
+		<i class="fi-shopping-cart" style="margin-right: 1em;"></i>
+		<?php echo $this->__('Add products to Cart and go to Checkout'); ?>
+		</button>
 	
 
 
