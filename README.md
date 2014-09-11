@@ -9,6 +9,9 @@ CHANGES
 TO DO 
 ----
 * Find a way to store products added to list in some session, so if adding fails then list stays as it was - <strong>Contribution seriously appreciated</strong>
+* Separate messages for errors with sku/product name which caused the error – many more possibilites to highlight product, etc.
+
+
 
 
 Contact
