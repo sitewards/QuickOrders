@@ -56,7 +56,6 @@ var OrderProduct = Class.create(
          * @private
          */
         _onChangeSku: function () {
-
             new Ajax.Request('../../../quickorders/product/info', {
                 method: 'get',
                 parameters: {
