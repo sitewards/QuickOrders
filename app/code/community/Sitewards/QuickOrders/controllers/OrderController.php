@@ -46,11 +46,8 @@ class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_A
                 $this->_redirect('checkout/cart');
             }
         } catch (Mage_Core_Exception $e) {
-            $this->getCustomerSession()->addError(
-                $this->__('Please enter valid product sku.')
-            );
-
-            $this->_redirect('quickorders/order/form');
+           $this->getCustomerSession()->addError($e->getMessage());
+           $this->_redirect('quickorders/order/form');
         }
     }
 
