@@ -1,10 +1,14 @@
-QuickOrders Dev-Patch-02
+QuickOrders Dev-Patch-03
 =============
-Changes:
+Changes
 -------------
-* If product has minimal quantity allowed in cart, with increments (i.e. can be sold only in 48pcs packages) the standard INPUT is replaced with <strong>SELECT</strong> that has value incrementation untill it reaches number equal to pcs available in stock.
-* Displaying product image
-* Added PL_pl language pack
-* Product is not added to the list if the stock status is 0. 
+* Before there was always $oProduct->getPrice which in case that product had special price was displaying on frontend not the right price.
+* Added 'finalprice'=>Mage::helper('core')->currency($oProduct->getFinalPrice()), in ProductController.php on line 41. 
+* Added in JS:
+* * Checking if price is equal to final product price. If it is - then show only price. If its not then add class names (old-price) to price, and display additional final product price. 
+*Some CSS cleaning as some attributes were specified in bad way
 
+To Do
+---------
+*Check if form.html don't have some custom id's/classes from Foundation framework. (i.e. <i class="fi", <button class="btn-cart", etc.) 
 
