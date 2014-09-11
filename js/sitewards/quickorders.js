@@ -109,7 +109,17 @@ var OrderProduct = Class.create(
                 this.getElement('.name').update(oResponse.name);
                 //this.getElement('.availability').update(oResponse.availability); don't show availability to customers as we don't want that, uncomment to show customer available pcs of specific product
 				this.getElement('.img').update('<img src="' + oResponse.image + '" class="product-img">'); 
-                this.getElement('.price').update(oResponse.price);
+                if(oResponse.price==oResponse.finalprice) {			//Check if normal price is equal to final product price	
+				this.getElement('.price').update(oResponse.price); //display only normal product price
+				this.getElement('.price').className='price'; //if its same, then do not stylize
+
+				}
+				else { //the normal price is not equal to final price 
+				this.getElement('.price').update(oResponse.price);
+				this.getElement('.price').className+=' old-price'; //the normal price is bigger then special price so add stylizing
+				this.getElement('.finalprice').update(oResponse.finalprice); //display final product price
+				}
+                
                 if (this._hasEmptyLineInForm() === false) {
                     this._duplicateLine();
                 }
@@ -191,6 +201,7 @@ var OrderProduct = Class.create(
             this.getElement('input.qty').disabled = 'disabled';
             this.getElement('.name').update('');
             this.getElement('.price').update('');
+            this.getElement('.finalprice').update('');
             this.getElement('.img').update('');
             this.getElement('.availability').update('');
         },
