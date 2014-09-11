@@ -38,6 +38,7 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
 					'availability' =>  $oProduct->getStockItem()->getQty(), //gets product availability in stock (pcs)
 					'image' => $oProduct->getImageUrl(), //gets product image
                     'price' => Mage::helper('core')->currency($oProduct->getPrice()),
+                    'finalprice' => Mage::helper('core')->currency($oProduct->getFinalPrice()),
                     'qty' => $oProduct->getStockItem()->getMinSaleQty(),
                 )
             );
