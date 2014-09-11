@@ -41,16 +41,12 @@
                 <td class="qty" id="test">
 				<input type="text" name="qty[]" class="qty input-text" disabled="disabled" id="txtQuantity"/>
 				</td>
-                <td class="remove" style="text-align: center;">
-				
-				<a class="remove" style="font-size:24px" ><i class="fi-minus-circle"></i></a></td>
+                <td><a class="remove"><?php echo $oHelper->__('Remove this entry'); ?></a></td>
             </tr>
             </tbody>
         </table>
-		<button type="submit" value="<?php echo $oHelper->__('Submit Data') ?>">
-		<i class="fi-shopping-cart" style="margin-right: 1em;"></i>
-		<?php echo $this->__('Add products to Cart and go to Checkout'); ?>
-		</button>
+	        <input type="submit" value="<?php echo $oHelper->__('Submit Data') ?>"
+               title="<?php echo $oHelper->__('Submit Data') ?>"/>
 	
 
 
