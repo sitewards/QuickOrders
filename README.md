@@ -21,7 +21,7 @@ CHANGES v0.3
 
 TO DO 
 ----
-### TEST BEFORE PULL REQUEST - Magento 1.8
+* More testing on Magneto 1.8 and any versions that matters this days. 
 * Find a way to store products added to list in some session, so if adding fails then list stays as it was - <strong>Contribution seriously appreciated</strong>
 * Separate messages for errors with sku/product name which caused the error – many more possibilites to highlight product, etc.
 * <strike>Block Enter key to process adding to cart – type="submit"</strike>
