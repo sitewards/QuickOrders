@@ -38,6 +38,7 @@ var OrderProduct = Class.create(
                 this._onChangeSku.bind(this)
             );
             this.getElement('input.qty').style.display = 'none';
+            this.getElement('td.qty').style.display = 'table-cell';
             this._sLoadingImage = $$('.sitewards-quickorders-order-form .loading').first().src;
 
             var that = this;
@@ -69,6 +70,8 @@ var OrderProduct = Class.create(
             });
             this.getElement('.name').update('<img src="'+this._sLoadingImage+'">');
             this.getElement('input.qty').style.display = 'none';
+            this.getElement('td.qty').style.display = 'table-cell';
+
         },
 
         /**
@@ -124,12 +127,13 @@ var OrderProduct = Class.create(
                     this._duplicateLine();
                 }
 
-                this.getElement('.qty').style.display = 'block';
+                this.getElement('input.qty').style.display = 'block';
+                this.getElement('td.qty').style.display = 'block';
                 oQty.focus();
                 oQty.select();
 
                 if (this.getElement('input.sku').value.length > 0) {
-                    this.getElement('.remove').show();
+                    this.getElement('a.remove').show();
                 }
             } else {
                 this._reset();
@@ -229,7 +233,7 @@ var OrderProduct = Class.create(
             this._oLine.remove();
             // hide "remove line" if only one line is left
             if (oLinesContainer.childElements().length <= 1) {
-                oLinesContainer.down('.remove').hide();
+                oLinesContainer.down('a.remove').hide();
             }
         },
 
