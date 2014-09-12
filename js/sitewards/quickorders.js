@@ -1,8 +1,9 @@
 document.observe(
     'dom:loaded',
     /**
-     * initializes first product*/
-    function () {
+     * initializes first product
+     */
+        function() {
         var oProduct = new OrderProduct($$('form#order_form .product')[0]);
     }
 );
@@ -36,11 +37,11 @@ var OrderProduct = Class.create(
                 'change',
                 this._onChangeSku.bind(this)
             );
-            this.getElement('.qty').style.display = 'none';
+            this.getElement('input.qty').style.display = 'none';
             this._sLoadingImage = $$('.sitewards-quickorders-order-form .loading').first().src;
 
             var that = this;
-            this.getElement('.remove')
+            this.getElement('a.remove')
                 .observe('click', function (oEvent) {
                     that._onRemove();
                     oEvent.preventDefault();
@@ -56,6 +57,7 @@ var OrderProduct = Class.create(
          * @private
          */
         _onChangeSku: function () {
+
             new Ajax.Request('../../../quickorders/product/info', {
                 method: 'get',
                 parameters: {
@@ -66,7 +68,7 @@ var OrderProduct = Class.create(
                 onFailure: this._onFailure.bind(this)
             });
             this.getElement('.name').update('<img src="'+this._sLoadingImage+'">');
-            this.getElement('.qty').style.display = 'none';
+            this.getElement('input.qty').style.display = 'none';
         },
 
         /**
@@ -239,8 +241,8 @@ var OrderProduct = Class.create(
         _onFailure: function () {
             this._reset();
             this._removeEmptyRows();
-            this._showMessage(Translator.translate('The product does not exist.'));
-	    this.getElement('.name').focus();
+			this._showMessage(Translator.translate('The product does not exist.'));
+		    this.getElement('.name').focus();
         }
     }
 );
