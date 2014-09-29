@@ -58,20 +58,20 @@ var OrderProduct = Class.create(
          * @private
          */
         _onChangeSku: function () {
-
-            new Ajax.Request('../../../quickorders/product/info', {
+            new Ajax.Request('/quickorders/product/info', {
                 method: 'get',
                 parameters: {
                     'sku' : this.getElement('input.sku').value
                 },
-                requestHeaders: {Accept: 'application/json'},
+                requestHeaders: {
+                    Accept: 'application/json'
+                },
                 onSuccess: this._onSuccess.bind(this),
                 onFailure: this._onFailure.bind(this)
             });
             this.getElement('.name').update('<img src="'+this._sLoadingImage+'">');
             this.getElement('input.qty').style.display = 'none';
             this.getElement('td.qty').style.display = 'table-cell';
-
         },
 
         /**
@@ -97,7 +97,48 @@ var OrderProduct = Class.create(
         },
 
         /**
-         * displaysinformation about product
+         * Build the quantity select inner html
+         *
+         * @param oResponse
+         * @param oQty
+         * @private
+         */
+        _buildQuantitySelect: function (oResponse, oQty) {
+            if (this.getElement('input.qty').value > 1) { //if product has minimal allowed quantity bigger than 1
+                var sQuantityHtml, iQuantityNumber;
+                iQuantityNumber = parseInt(this.getElement('input.qty').value, 10);
+                sQuantityHtml = '<select type="text" name="qty[]" class="qty" selected="selected">';
+                //do it while number is lower than available pcs
+                for (var i = 0; iQuantityNumber < oResponse.availability; ++i) {
+                    sQuantityHtml += '<option value="' + iQuantityNumber + '">' + iQuantityNumber + '</option>';
+                    iQuantityNumber = iQuantityNumber + oResponse.qty; //number=minimum quantity incrementing
+                }
+                sQuantityHtml += '</select>';
+                this.getElement('td.qty').innerHTML = sQuantityHtml; //replace innerhtml of td qty with html value
+                oQty.value = e.options[e.selectedIndex].value; //get selected value from dropdown list
+            }
+        },
+
+        /**
+         * Build the price html element and content
+         *
+         * @param oResponse
+         * @private
+         */
+        _buildPriceElement: function (oResponse) {
+            //Check if normal price is equal to final product price
+            if (oResponse.price == oResponse.finalprice) {
+                this.getElement('.price').update(oResponse.price); //display only normal product price
+                this.getElement('.price').className = 'price'; //if its same, then do not stylize
+            } else { //the normal price is not equal to final price
+                this.getElement('.price').update(oResponse.price);
+                this.getElement('.price').className += ' old-price'; //the normal price is bigger then special price so add stylizing
+                this.getElement('.finalprice').update(oResponse.finalprice); //display final product price
+            }
+        },
+
+        /**
+         * displays information about product
          *
          * @param transport
          * @private
@@ -110,25 +151,13 @@ var OrderProduct = Class.create(
                 oQty.value = Math.max(1, oResponse.qty);
                 oQty.disabled = false;
                 this.getElement('.name').update(oResponse.name);
-                //this.getElement('.availability').update(oResponse.availability); don't show availability to customers as we don't want that, uncomment to show customer available pcs of specific product
-				this.getElement('.img').update('<img src="' + oResponse.image + '" class="product-img" width="40" height="40">'); 
-                if(oResponse.price==oResponse.finalprice) {			//Check if normal price is equal to final product price	
-				this.getElement('.price').update(oResponse.price); //display only normal product price
-				this.getElement('.price').className='price'; //if its same, then do not stylize
-
-				}
-				else { //the normal price is not equal to final price 
-				this.getElement('.price').update(oResponse.price);
-				this.getElement('.price').className+=' old-price'; //the normal price is bigger then special price so add stylizing
-				this.getElement('.finalprice').update(oResponse.finalprice); //display final product price
-				}
-                
+                this.getElement('.img').update('<img src="' + oResponse.image + '" class="product-img" />');
+                this._buildPriceElement(oResponse);
                 if (this._hasEmptyLineInForm() === false) {
                     this._duplicateLine();
                 }
 
                 this.getElement('input.qty').style.display = 'block';
-                this.getElement('td.qty').style.display = 'block';
                 oQty.focus();
                 oQty.select();
 
@@ -141,20 +170,8 @@ var OrderProduct = Class.create(
                 this._showMessage(oResponse.error);
                 this.getElement('input.sku').focus();
             }
-			  if (this.getElement('input.qty').value > 1) { //if product has minimal allowed quantity bigger than 1
-				var html, i, number;
-				number = parseInt(this.getElement('input.qty').value, 10); 
-				html='<select type="text" name="qty[]" class="qty" selected="selected">';
-				for (i = 0; number < oResponse.availability; ++i)   //do it while number is lower than available pcs
-				{
-					html+='<option value="'+ number + '">'+ number +'</option>'; 
-					number=number+oResponse.qty; //number=minimum quantity incrementing
-				}
-				html+='</select>';
-				this.getElement("td.qty").innerHTML = html; //replace innerhtml of td qty with html value
-				oQty.value=e.options[e.selectedIndex].value; //get selected value from dropdown list
-			  }
-		
+
+            this._buildQuantitySelect(oResponse, oQty);
         },
 
         /**
@@ -245,8 +262,8 @@ var OrderProduct = Class.create(
         _onFailure: function () {
             this._reset();
             this._removeEmptyRows();
-			this._showMessage(Translator.translate('The product does not exist.'));
-		    this.getElement('.name').focus();
+            this._showMessage(Translator.translate('The product does not exist.'));
+            this.getElement('.name').focus();
         }
     }
 );
