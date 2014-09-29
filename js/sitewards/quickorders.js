@@ -58,7 +58,7 @@ var OrderProduct = Class.create(
          * @private
          */
         _onChangeSku: function () {
-            new Ajax.Request('/quickorders/product/info', {
+            new Ajax.Request(sQuickOrderUrl, {
                 method: 'get',
                 parameters: {
                     'sku' : this.getElement('input.sku').value

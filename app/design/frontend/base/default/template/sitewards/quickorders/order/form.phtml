@@ -3,7 +3,7 @@
 <ul class="messages" style="display: none;">
     <li class="error-msg">
         <ul>
-            <li></li>
+            <li><?php echo Mage::registry('message'); ?></li>
         </ul>
     </li>
 </ul>
@@ -52,4 +52,5 @@
 </div>
 <script type="text/javascript">
     Translator.add('The product does not exist.', '<?php echo $oHelper->__('The product does not exist.')?>');
+    var sQuickOrderUrl = '<?php echo $this->getUrl('quickorders/product/info'); ?>';
 </script>
