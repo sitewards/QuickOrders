@@ -29,13 +29,16 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
 
         /* @var Mage_Catalog_Model_Product $oProduct */
         $oProduct = Mage::getModel('catalog/product')->loadByAttribute('sku', $sSku);
-        if ($this->isProductActive($oProduct)) {
+        if ($this->isProductActive($oProduct) && $oProduct->isAvailable(true)) {
             $sResponse = json_encode(
                 array(
                     'result' => 0,
                     'sku' => $oProduct->getSku(),
                     'name' => $oProduct->getName(),
+					'availability' =>  $oProduct->getStockItem()->getQty(), //gets product availability in stock (pcs)
+					'image' => $oProduct->getImageUrl(), //gets product image
                     'price' => Mage::helper('core')->currency($oProduct->getPrice()),
+                    'finalprice' => Mage::helper('core')->currency($oProduct->getFinalPrice()),
                     'qty' => $oProduct->getStockItem()->getMinSaleQty(),
                 )
             );
@@ -60,4 +63,6 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
             && is_array($oProduct->getWebsiteIds())
             && in_array($aCurrentWebsiteId, $oProduct->getWebsiteIds());
     }
+	
+	
 }
