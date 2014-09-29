@@ -46,8 +46,8 @@ class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_A
                 $this->_redirect('checkout/cart');
             }
         } catch (Mage_Core_Exception $oSubmitException) {
-           $this->getCustomerSession()->addError($oSubmitException->getMessage());
-           $this->_redirect('quickorders/order/form');
+            $this->getCustomerSession()->addError($oSubmitException->getMessage());
+            $this->_redirect('quickorders/order/form');
         }
     }
 

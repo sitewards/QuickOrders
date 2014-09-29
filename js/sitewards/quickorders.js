@@ -164,14 +164,14 @@ var OrderProduct = Class.create(
                 if (this.getElement('input.sku').value.length > 0) {
                     this.getElement('a.remove').show();
                 }
+
+                this._buildQuantitySelect(oResponse, oQty);
             } else {
                 this._reset();
                 this.getElement('input.sku').value = '';
                 this._showMessage(oResponse.error);
                 this.getElement('input.sku').focus();
             }
-
-            this._buildQuantitySelect(oResponse, oQty);
         },
 
         /**
@@ -225,7 +225,6 @@ var OrderProduct = Class.create(
             this.getElement('.price').update('');
             this.getElement('.finalprice').update('');
             this.getElement('.img').update('');
-            this.getElement('.availability').update('');
         },
 
         /**

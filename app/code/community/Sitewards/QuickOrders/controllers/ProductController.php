@@ -71,7 +71,7 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
                 'result'       => 0,
                 'sku'          => $oProduct->getSku(),
                 'name'         => $oProduct->getName(),
-                'image'        => (string) $oImageHelper->init($oProduct, 'image')->resize(40, 40), //gets product image
+                'image'        => (string)$oImageHelper->init($oProduct, 'image')->resize(40, 40), //gets product image
                 'price'        => $oCoreHelper->currency($oProduct->getPrice()),
                 'finalprice'   => $oCoreHelper->currency($oProduct->getFinalPrice()),
                 'qty'          => $oStockItem->getMinSaleQty(),
