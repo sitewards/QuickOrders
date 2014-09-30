@@ -29,18 +29,9 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
 
         /* @var Mage_Catalog_Model_Product $oProduct */
         $oProduct = Mage::getModel('catalog/product')->loadByAttribute('sku', $sSku);
-        if ($this->isProductActive($oProduct)) {
-            $sResponse = json_encode(
-                array(
-                    'result' => 0,
-                    'sku' => $oProduct->getSku(),
-                    'name' => $oProduct->getName(),
-                    'price' => Mage::helper('core')->currency($oProduct->getPrice()),
-                    'qty' => $oProduct->getStockItem()->getMinSaleQty(),
-                )
-            );
+        if ($this->isProductActive($oProduct) && $oProduct->isAvailable(true)) {
             $this->getResponse()->setHeader('Content-type', 'text/json');
-            $this->getResponse()->setBody($sResponse);
+            $this->getResponse()->setBody($this->getInfoResponse($oProduct));
         } else {
             $this->getResponse()->setHttpResponseCode(404);
         }
@@ -59,5 +50,32 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
             && $oProduct->getId()
             && is_array($oProduct->getWebsiteIds())
             && in_array($aCurrentWebsiteId, $oProduct->getWebsiteIds());
+    }
+
+    /**
+     * For a given product produce a json string of all the information
+     *
+     * @param Mage_Catalog_Model_Product $oProduct
+     * @return string
+     */
+    protected function getInfoResponse($oProduct)
+    {
+        /** @var Mage_Catalog_Helper_Image $oImageHelper */
+        $oImageHelper = Mage::helper('catalog/image');
+        /** @var Mage_Core_Helper_Data $oCoreHelper */
+        $oCoreHelper = Mage::helper('core');
+        /** @var Mage_CatalogInventory_Model_Stock_Item $oStockItem */
+        $oStockItem = $oProduct->getStockItem();
+        return json_encode(
+            array(
+                'result'       => 0,
+                'sku'          => $oProduct->getSku(),
+                'name'         => $oProduct->getName(),
+                'image'        => (string)$oImageHelper->init($oProduct, 'image')->resize(40, 40), //gets product image
+                'price'        => $oCoreHelper->currency($oProduct->getPrice()),
+                'finalprice'   => $oCoreHelper->currency($oProduct->getFinalPrice()),
+                'qty'          => $oStockItem->getMinSaleQty(),
+            )
+        );
     }
 }

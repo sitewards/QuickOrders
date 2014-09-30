@@ -1,13 +1,17 @@
+.sitewards-quickorders-order-form TABLE {
+    width: 100%;
+}
+
 .sitewards-quickorders-order-form TABLE TR TD,
 .sitewards-quickorders-order-form THEAD TR TH {
     padding-right: 20px;
-    padding-bottom: 10px;
 }
-
+.sitewards-quickorders-order-form TR {
+    vertical-align: middle;
+}
 .sitewards-quickorders-order-form THEAD TR TH {
     font-weight: bold;
 }
-
 .sitewards-quickorders-order-form .price {
     text-align: right;
 }
@@ -18,4 +22,38 @@
 
 .sitewards-quickorders-order-form A {
     cursor: pointer;
+}
+.sitewards-quickorders-order-form .loading {
+    margin-top: 15px;
+}
+.sitewards-quickorders-order-form .product-img{
+    width: 40px;
+    height: 40px;
+}
+
+.sitewards-quickorders-order-form .qty .input-text {
+    width:100%;
+}
+
+.sitewards-quickorders-order-form input.sku {
+    width: 100%;
+}
+
+.product-code {
+    width: 33%;
+}
+
+.sitewards-quickorders-order-form td.price{
+    width: 25%;
+    padding-top: 17px;
+    font-weight: bold;
+}
+
+.sitewards-quickorders-order-form td.finalprice {
+    width: 25%;
+    padding-top: 17px;
+    font-weight: bold;
+}
+.sitewards-quickorders-order-form td.name {
+    padding-top: 17px;
 }
