@@ -22,7 +22,7 @@
         </reference>
     </customer_account>
     <sitewards_quickorders_order_form translate="label" module="sitewards_quickorders">
-        <label>Qucik Order Form</label>
+        <label>Quick Order Form</label>
         <update handle="customer_account"/>
         <reference name="my.account.wrapper">
             <block type="core/template" name="order_form"
