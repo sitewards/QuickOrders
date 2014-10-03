@@ -40,7 +40,7 @@ class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_A
 
             if (!$this->getCheckoutSession()->getNoCartRedirect(true)) {
                 if (!$oCart->getQuote()->getHasError()) {
-                    $sSuccessMessage = $this->__('Your product(s) where added to your shopping cart.');
+                    $sSuccessMessage = $this->__('Your product(s) were added to your shopping cart.');
                     $this->getCheckoutSession()->addSuccess($sSuccessMessage);
                 }
                 $this->_redirect('checkout/cart');
