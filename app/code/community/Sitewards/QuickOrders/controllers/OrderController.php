@@ -10,6 +10,7 @@
  */
 class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_Action
 {
+
     /**
      * Check customer authentication and extension flag
      */
@@ -28,7 +29,6 @@ class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_A
         $this->_initLayoutMessages('customer/session');
         $this->renderLayout();
     }
-
 
     /**
      * Submits all the products from the multiple product addition form
@@ -89,8 +89,8 @@ class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_A
     protected function tryAddProducts()
     {
         $oRequest = $this->getRequest();
-        $aSkus    = array_filter($oRequest->getParam('sku'));
-        $aQtys    = $oRequest->getParam('qty');
+        $aSkus = array_filter($oRequest->getParam('sku'));
+        $aQtys = $oRequest->getParam('qty');
 
         foreach ($aSkus as $iKey => $sSku) {
             $iQuantity = isset($aQtys[$iKey]) ? $aQtys[$iKey] : 1;
@@ -112,10 +112,47 @@ class Sitewards_QuickOrders_OrderController extends Mage_Core_Controller_Front_A
     protected function addSingleProduct($sSku, $iQuantity)
     {
         /** @var Mage_Catalog_Model_Product $oProduct */
-        $oProduct   = Mage::getModel('catalog/product');
+        $oProduct = Mage::getModel('catalog/product');
         $iProductId = $oProduct->getIdBySku($sSku);
-        if (isset($iProductId)) {
+        if ($this->checkProduct($iProductId, $sSku, $iQuantity) == true) {
             $this->getCart()->addProduct($iProductId, $iQuantity);
+        }
+    }
+    /**
+     * Check if variable $iProductId has been set,
+     * proceed with adding other products to cart if one has failed.
+     * Add checkout session error message with products that were failed to process.
+     * @TODO de_DE translation of used strings
+     * @param string $sSku
+     * @param int $iQuantity
+     */
+    protected function checkProduct($iProductId, $sSku, $iQuantity)
+    {
+        if (isset($iProductId)) {
+            if ($this->checkProductStockAvailability($iProductId, $iQuantity) == true) {
+                return true;
+            } else {
+                $this->getCheckoutSession()->addError($this->__('Product %s couldn\'t be added to cart because requested quantity exceeded stock availability.', $sSku));
+            }
+        } else {
+            $this->getCheckoutSession()->addError($this->__('Product with code %s doesn\'t exists.', $sSku));
+        }
+    }
+    /**
+     * Check if requested product quantity is available in stock
+     *
+     * @param int $iQuantity
+     */
+    protected function checkProductStockAvailability($iProductId, $iQuantity)
+    {
+        /** @var Mage_Catalog_Model_Product $oProduct */
+        $oProduct = Mage::getModel('catalog/product');
+        $iProductData = $oProduct->load($iProductId);
+        $iProductStockQty = Mage::getModel('cataloginventory/stock_item')->loadByProduct($iProductData)->getQty();
+        if ($iProductId) {
+            if ($iQuantity <= $iProductStockQty) {
+                return true;
+            }
         }
     }
 }

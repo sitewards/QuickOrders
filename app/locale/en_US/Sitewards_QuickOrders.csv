@@ -8,3 +8,5 @@
 "Quick Order Form","Quick Order Form"
 "Remove this entry","Remove this entry"
 "Add products to Cart","Add products to Cart"
+"Product %s couldn\'t be added to cart because requested quantity exceeded stock availability.","Product %s couldn\'t be added to cart because requested quantity exceeded stock availability."
+"Product with code %s doesn\'t exists.","Product with code %s doesn\'t exists."

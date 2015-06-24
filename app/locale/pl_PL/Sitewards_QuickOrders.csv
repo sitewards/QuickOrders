@@ -10,3 +10,5 @@
 "Quantity","Ilość sztuk"
 "Product code","Kod produktu"
 "Add products to Cart","Dodaj produkty do koszyka"
+"Product %s couldn\'t be added to cart because requested quantity exceeded stock availability.","Produkt %s nie mógł zostać dodany do koszyka ponieważ żądana ilość przekroczyła dostępną w magazynie."
+"Product with code %s doesn\'t exists.","Product o kodzie %s nie istnieje."
