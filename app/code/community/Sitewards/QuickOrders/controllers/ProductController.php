@@ -10,6 +10,7 @@
  */
 class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front_Action
 {
+
     /**
      * Check customer authentication and extension flag
      */
@@ -46,10 +47,7 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
     protected function isProductActive($oProduct)
     {
         $aCurrentWebsiteId = Mage::app()->getStore()->getWebsiteId();
-        return $oProduct
-            && $oProduct->getId()
-            && is_array($oProduct->getWebsiteIds())
-            && in_array($aCurrentWebsiteId, $oProduct->getWebsiteIds());
+        return $oProduct && $oProduct->getId() && is_array($oProduct->getWebsiteIds()) && in_array($aCurrentWebsiteId, $oProduct->getWebsiteIds());
     }
 
     /**
@@ -63,18 +61,18 @@ class Sitewards_QuickOrders_ProductController extends Mage_Core_Controller_Front
         /** @var Mage_Catalog_Helper_Image $oImageHelper */
         $oImageHelper = Mage::helper('catalog/image');
         /** @var Mage_Core_Helper_Data $oCoreHelper */
-        $oCoreHelper = Mage::helper('core');
+        $oCoreHelper  = Mage::helper('core');
         /** @var Mage_CatalogInventory_Model_Stock_Item $oStockItem */
-        $oStockItem = $oProduct->getStockItem();
+        $oStockItem   = $oProduct->getStockItem();
         return json_encode(
             array(
-                'result'       => 0,
-                'sku'          => $oProduct->getSku(),
-                'name'         => $oProduct->getName(),
-                'image'        => (string)$oImageHelper->init($oProduct, 'image')->resize(40, 40), //gets product image
-                'price'        => $oCoreHelper->currency($oProduct->getPrice()),
-                'finalprice'   => $oCoreHelper->currency($oProduct->getFinalPrice()),
-                'qty'          => $oStockItem->getMinSaleQty(),
+                'result' => 0,
+                'sku' => $oProduct->getSku(),
+                'name' => $oProduct->getName(),
+                'image' => (string) $oImageHelper->init($oProduct, 'image')->resize(40, 40), //gets product image
+                'price' => $oCoreHelper->currency($oProduct->getPrice()),
+                'finalprice' => $oCoreHelper->currency($oProduct->getFinalPrice()),
+                'qty' => $oStockItem->getMinSaleQty(),
             )
         );
     }
