@@ -13,3 +13,5 @@
 "Quantity","Anzahl"
 "Action","Aktion"
 "Add products to Cart","Produkte in den Warenkorb"
+"Product %s couldn\'t be added to cart because requested quantity exceeded stock availability.","Product %s couldn\'t be added to cart because requested quantity exceeded stock availability."
+"Product with code %s doesn\'t exists.","Product with code %s doesn\'t exists."
